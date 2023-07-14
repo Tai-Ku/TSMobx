@@ -1,18 +1,18 @@
 import { action, computed, makeObservable, observable } from "mobx";
-import { IRootStore } from "./RootStore ";
+import { IRootStore } from "./RootStore";
 
 export class CountStore {
   count: number = 1;
   rootStore: IRootStore;
 
   constructor(rootStore: IRootStore) {
-    console.log(rootStore);
     makeObservable(this, {
       count: observable,
       increment: action,
       decrement: action,
       getCountValue: computed,
     });
+
     this.rootStore = rootStore;
   }
 
@@ -20,9 +20,9 @@ export class CountStore {
     this.count++;
   };
   decrement = () => {
-    this.count++;
+    this.count--;
   };
-  getCountValue = () => {
+  get getCountValue() {
     return this.count;
-  };
+  }
 }
